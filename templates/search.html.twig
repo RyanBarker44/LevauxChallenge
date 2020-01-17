@@ -1,0 +1,35 @@
+{%  extends 'base.html.twig' %}
+
+{%  block title %}{{ results[0]['FirstW']|capitalize }} | Search {% endblock %}
+
+{% block body %}
+    <h4 style="text-align: left; margin: 15px">Results for '{{ results[0]['FirstW']|capitalize }}':</h4>
+
+    <!---- Loop through movies ---->
+    {% for movie in results %}
+        <div class="row" style="margin:10px;">
+
+            <!---- Display image ---->
+            <div class="col-8 col-sm-4 col-md-3" style="background-color: {{ movie['FirstW'] }}; padding: 6px; border-radius: 3px;">
+                <img style="width: 100%; size: auto; border: #fbfffd solid 2px;" src={{ movie['Poster']}}class="card-img" alt="Poster Image">
+            </div>
+            <!---- End display image ---->
+
+            <!-- Display movie details -->
+            <div class="col-8 col-sm-7 col-md-8" style="background-color: #33373c; color: whitesmoke; text-align: left; border-radius: 20px; margin-left: 3px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie['Title'] }}</h5>
+                    <p class="card-text">{{ movie['Type'] }}</p>
+                    <p class="card-text"><small class="text-muted">{{ movie['Year'] }}</small></p>
+                    <p class="card-text">Matched keyword: {{ movie['FirstW'] }}</p>
+                </div>
+            </div>
+            <!-- End display movie details -->
+
+        </div>
+    {% endfor %}
+    <!-- End loop through movies -->
+
+{% endblock %}
+
+
